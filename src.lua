@@ -4,7 +4,7 @@
 
 os.execute("chcp 65001") --Configura o console para UTF-8 no Windows
 
---função para escrever o nome da carta
+--função para escrever o nome da carta (vou utilizar isso no futuro, utilizando objetos.)
 local function monsterCard(cardName, cardType, cardDescription, cardHP, cardSPD, cardATK, cardDEF, cardINT, cardP, cardSkill)
     print("=============================================================================================================================")
     print("| " .. "🪪 Nome: " .. cardName)
@@ -15,10 +15,10 @@ local function monsterCard(cardName, cardType, cardDescription, cardHP, cardSPD,
     print("| ")
     print("| " .. "📃 ATRIBUTOS: ")
     print("| ")
-    print("| " .. "❤️ Vitalidade: " .. cardHP)
-    print("| " .. "⚔️ Ataque: " .. cardATK)
-    print("| " .. "🛡️ Defesa: " .. cardDEF)
-    print("| " .. "🏃 Velocidade: " .. cardSPD)
+    print("| " .. "❤️ Vitalidade:   " .. cardHP)
+    print("| " .. "⚔️ Ataque:       " .. cardATK)
+    print("| " .. "🛡️ Defesa:       " .. cardDEF)
+    print("| " .. "🏃 Velocidade:   " .. cardSPD)
     print("| " .. "🧠 Inteligência: " .. cardINT)
     print("=============================================================================================================================")
 
@@ -27,21 +27,21 @@ end
 --atributos e informações da carta
 local cardName = "Demogorgon"
 local cardType = "Monstro / Aberração"
-local cardDescription = "O Demogorgon é uma criatura poderosa e aterrorizante do submundo, conhecido por sua força bruta e habilidades mágicas."
+local cardDescription = "O Demogorgon é uma criatura poderosa e aterrorizante do mundo invertido, conhecido por sua força bruta e habilidades mágicas."
 local cardHP = 5
 local cardSPD = 5
 local cardATK = 7
-local cardDEF = 1
+local cardDEF = 3
 local cardINT = 2
 local cardP = "Echolocation"
 local cardSkill = "Devour"
 
-monsterCard(cardName, cardType, cardDescription, cardHP, cardSPD, cardATK, cardDEF, cardINT, cardP, cardSkill)
+--monsterCard(cardName, cardType, cardDescription, cardHP, cardSPD, cardATK, cardDEF, cardINT, cardP, cardSkill)
 
 --função para retornar atributos em barra (deve ser possível com utilização de objetos futuramente)
---[[local function getAttributeBar(attribute)
-    local fullChar = "#"
-    local emptyChar = "0"
+local function getAttributeBar(attribute)
+    local fullChar = "🟩"
+    local emptyChar = "⬛"
 
     local result = ""
     for i = 1, 10 , 1 do
@@ -52,6 +52,20 @@ monsterCard(cardName, cardType, cardDescription, cardHP, cardSPD, cardATK, cardD
         end
     end
     return result
-end]]
+end
 
-
+    print("=============================================================================================================================")
+    print("| " .. "🪪  Nome: " .. cardName)
+    print("| " .. "🏷️  Tipo: " .. cardType)
+    print("| " .. "📖 Descrição: " .. cardDescription)
+    print("| " .. "⏳ Habilidade Passiva: " .. cardP)
+    print("| " .. "💥 Habilidade Ativa: " .. cardSkill)
+    print("| ")
+    print("| " .. "📃 ATRIBUTOS: ")
+    print("| ")
+    print("| " .. "❤️  Vitalidade:   " .. getAttributeBar(cardHP))
+    print("| " .. "⚔️  Ataque:       " .. getAttributeBar(cardATK))
+    print("| " .. "🛡️  Defesa:       " .. getAttributeBar(cardDEF))
+    print("| " .. "🏃 Velocidade:   " .. getAttributeBar(cardSPD))
+    print("| " .. "🧠 Inteligência: " .. getAttributeBar(cardINT))
+    print("=============================================================================================================================")
