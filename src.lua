@@ -1,6 +1,7 @@
---Ideia geral, fazer "banco de dados" de monstros de forma "simples" mas bem estruturada, atualizando conforme novas ideias surjam.
+--Ideia geral, fazer jogo de carta de monstros de forma "simples" mas bem estruturada, atualizando conforme novas ideias surjam.
 --Ter monstros de diversos jogos e tipos.
 --Fazer essas fichas todas pelo console.
+-- fazer fraquezas logo mais utilizando classes e objetos.
 
 os.execute("chcp 65001") --Configura o console para UTF-8 no Windows
 
