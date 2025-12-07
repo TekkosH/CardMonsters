@@ -56,17 +56,18 @@ function funcs.cardSelect() ---funções para escolher a carta(i know this func 
         choice = io.read("*n")
     end
 
-    GameState.selectedCard = nav[choice]                                      -- obtém nome do card escolhido, choice tem que ser num
+    GameState.selectedCard = nav
+    [choice]                                                                  -- obtém nome do card escolhido, choice tem que ser num
 
     print(string.format("Você escolheu a carta: %s", GameState.selectedCard)) --printa nome da carta escolhida, necessário return para utilizar na func de atributos.
 end
 
 ---função para mostrar os atributos da carta escolhida
-function funcs.showCardAttributes()
+function funcs.ShowEnemyCardAttributes()
     GameState.playerCard = cards[GameState.selectedCard]
 
     print(
-    "=============================================================================================================================")
+        "=============================================================================================================================")
     print("| " .. "🪪 Nome: " .. GameState.playerCard.name)
     print("| " .. "🏷️ Tipo: " .. GameState.playerCard.type)
     print("| " .. "📖 Descrição: " .. GameState.playerCard.description)
@@ -81,7 +82,7 @@ function funcs.showCardAttributes()
     print("| " .. "🏃 Velocidade:   " .. funcs.getAttributeBar(GameState.playerCard.attributes.SPD))
     print("| " .. "🧠 Inteligência: " .. funcs.getAttributeBar(GameState.playerCard.attributes.INT))
     print(
-    "=============================================================================================================================")
+        "=============================================================================================================================")
 end
 
 ---função para selecionar carta inimiga aleatória com base em número aleatório
@@ -123,9 +124,9 @@ function funcs.combat()
             rng = math.random(20)
             if rng >= 10 then
                 GameState.enemyCard.attributes.HP = GameState.enemyCard.attributes.HP -
-                GameState.playerCard.attributes.ATK
+                    GameState.playerCard.attributes.ATK
                 print("Você atacou " ..
-                GameState.enemyCard.name .. " causando " .. GameState.playerCard.attributes.ATK .. " de dano!")
+                    GameState.enemyCard.name .. " causando " .. GameState.playerCard.attributes.ATK .. " de dano!")
             else
                 print("Seu ataque falhou!")
             end
@@ -136,11 +137,11 @@ function funcs.combat()
                 print("A habilidade ativa falhou!")
             else
                 GameState.enemyCard.attributes.HP = GameState.enemyCard.attributes.HP -
-                (GameState.playerCard.attributes.ATK + 1)
+                    (GameState.playerCard.attributes.ATK + 1)
                 print(GameState.playerCard.name ..
-                " usou a habilidade ativa: " ..
-                GameState.playerCard.activeAbility ..
-                " e causou " .. GameState.playerCard.attributes.ATK + 1 .. " de dano ao inimigo.")
+                    " usou a habilidade ativa: " ..
+                    GameState.playerCard.activeAbility ..
+                    " e causou " .. GameState.playerCard.attributes.ATK + 1 .. " de dano ao inimigo.")
             end
         elseif action == 3 then
             rng = math.random(20)
@@ -152,6 +153,9 @@ function funcs.combat()
                 print("Fuga falhou! O combate continua.")
             end
         end
+
+        funcs.showCardAttributes()
+        funcs.ShowEnemyCardAttributes()
         -- Turno do inimigo
 
         if GameState.playerCard.attributes.HP > 0 and GameState.enemyCard.attributes.HP > 0 then
@@ -160,9 +164,9 @@ function funcs.combat()
                 rng = math.random(20)
                 if rng >= 10 then
                     GameState.playerCard.attributes.HP = GameState.playerCard.attributes.HP -
-                    GameState.enemyCard.attributes.ATK
+                        GameState.enemyCard.attributes.ATK
                     print("O inimigo " .. GameState.enemyCard.name ..
-                    " atacou você causando " .. GameState.enemyCard.attributes.ATK .. " de dano!")
+                        " atacou você causando " .. GameState.enemyCard.attributes.ATK .. " de dano!")
                 else
                     print("O ataque do inimigo falhou!")
                 end
@@ -172,15 +176,37 @@ function funcs.combat()
                     print("A habilidade ativa do inimigo falhou!")
                 else
                     GameState.playerCard.attributes.HP = GameState.playerCard.attributes.HP -
-                    (GameState.enemyCard.attributes.ATK + 1)
+                        (GameState.enemyCard.attributes.ATK + 1)
                     print("O inimigo " .. GameState.enemyCard.name ..
-                    " usou a habilidade " ..
-                    GameState.enemyCard.activeAbility ..
-                    " em você causando " .. GameState.enemyCard.attributes.ATK + 1 .. " de dano!")
+                        " usou a habilidade " ..
+                        GameState.enemyCard.activeAbility ..
+                        " em você causando " .. GameState.enemyCard.attributes.ATK + 1 .. " de dano!")
                 end
             end
         end
     end
+end
+
+function funcs.showCardAttributes()
+    GameState.playerCard = cards[GameState.selectedCard]
+
+    print(
+        "=============================================================================================================================")
+    print("| " .. "🪪 Nome: " .. GameState.enemyCard.name)
+    print("| " .. "🏷️ Tipo: " .. GameState.enemyCard.type)
+    print("| " .. "📖 Descrição: " .. GameState.enemyCard.description)
+    print("| " .. "⏳ Habilidade Passiva: " .. GameState.enemyCard.passiveAbility)
+    print("| " .. "💥 Habilidade Ativa: " .. GameState.enemyCard.activeAbility)
+    print("| ")
+    print("| " .. "📃 ATRIBUTOS: ")
+    print("| ")
+    print("| " .. "❤️ Vitalidade:    " .. funcs.getAttributeBar(GameState.enemyCard.attributes.HP))
+    print("| " .. "⚔️ Ataque:        " .. funcs.getAttributeBar(GameState.enemyCard.attributes.ATK))
+    print("| " .. "🛡️ Defesa:        " .. funcs.getAttributeBar(GameState.enemyCard.attributes.DEF))
+    print("| " .. "🏃 Velocidade:   " .. funcs.getAttributeBar(GameState.enemyCard.attributes.SPD))
+    print("| " .. "🧠 Inteligência: " .. funcs.getAttributeBar(GameState.enemyCard.attributes.INT))
+    print(
+        "=============================================================================================================================")
 end
 
 return funcs

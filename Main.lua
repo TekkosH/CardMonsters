@@ -8,13 +8,13 @@ local funcs = require("Funcs")
 
 funcs.utf8Console()
 
-funcs.cardSelect() -- chama a função para selecionar a carta
-funcs.enemyCardSelect() -- chama a função para selecionar a carta inimiga
+funcs.cardSelect()         -- chama a função para selecionar a carta
+funcs.enemyCardSelect()    -- chama a função para selecionar a carta inimiga
 funcs.showCardAttributes() -- chama a função para mostrar atributos da carta escolhida
 
 print("\nCarta inimiga selecionada: " .. GameState.enemyCard.name)
 
-funcs.combat() -- chama a função de combate entre cartas   
+funcs.combat() -- chama a função de combate entre cartas
 --[[
 A fazer:
 - Sistema de combate entre cartas
