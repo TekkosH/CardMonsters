@@ -154,7 +154,7 @@ function funcs.combat()
             end
         end
 
-        funcs.showCardAttributes()
+        
         funcs.ShowEnemyCardAttributes()
         -- Turno do inimigo
 
@@ -182,6 +182,7 @@ function funcs.combat()
                         GameState.enemyCard.activeAbility ..
                         " em você causando " .. GameState.enemyCard.attributes.ATK + 1 .. " de dano!")
                 end
+            funcs.showCardAttributes()
             end
         end
     end
