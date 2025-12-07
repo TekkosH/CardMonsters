@@ -63,7 +63,7 @@ function funcs.cardSelect() ---funções para escolher a carta(i know this func 
 end
 
 ---função para mostrar os atributos da carta escolhida
-function funcs.ShowEnemyCardAttributes()
+function funcs.showCardAttributes()
     GameState.playerCard = cards[GameState.selectedCard]
 
     print(
@@ -155,7 +155,7 @@ function funcs.combat()
         end
 
         
-        funcs.ShowEnemyCardAttributes()
+        funcs.showEnemyCardAttributes()
         -- Turno do inimigo
 
         if GameState.playerCard.attributes.HP > 0 and GameState.enemyCard.attributes.HP > 0 then
@@ -188,8 +188,7 @@ function funcs.combat()
     end
 end
 
-function funcs.showCardAttributes()
-    GameState.playerCard = cards[GameState.selectedCard]
+function funcs.showEnemyCardAttributes()
 
     print(
         "=============================================================================================================================")
